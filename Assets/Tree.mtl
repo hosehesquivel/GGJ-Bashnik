@@ -1,0 +1,8 @@
+newmtl treematerial
+Kd 0.1737718 0.6698113 0.2214152
+d 1
+
+newmtl TrunkMaterial
+Kd 0.6132076 0.4148971 0.2111517
+d 1
+
