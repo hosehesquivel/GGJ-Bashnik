@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public int spawnInterval = 300;
+    public int spawnInterval = 150;
+    public int spawnDistance = 100;
     public GameObject[] targets;
     public GameObject[] enemyTypes;
 
-    private int tick = 0;
+    private int tick = 130;
+    private float spawnHeight = 4.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +33,21 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        var enemyIndex = Random.Range(0, enemyTypes.Length - 1);
-        GameObject go = GameObject.Instantiate(enemyTypes[enemyIndex], new Vector3(Random.Range(0,5),0, Random.Range(0, 5)), Quaternion.identity);
-
         var targetIndex = Random.Range(0, targets.Length - 1);
+        GameObject target = targets[targetIndex];
 
-        go.GetComponent<EnemyBehavior>().SetTarget(targets[targetIndex]);
+        Vector3 normal = new Vector3(target.transform.position.x, 0, target.transform.position.z);
+        normal.Normalize();
+
+        var enemyIndex = Random.Range(0, enemyTypes.Length - 1);
+        GameObject go = GameObject.Instantiate(enemyTypes[enemyIndex], new Vector3(normal.x * spawnDistance, spawnHeight, normal.z * spawnDistance), Quaternion.identity);
+
+        bool isTower = false;
+
+        if (targetIndex < 4)
+        {
+            isTower = true;
+        }
+        go.GetComponent<EnemyBehavior>().SetTarget(target, isTower);
     }
 }
