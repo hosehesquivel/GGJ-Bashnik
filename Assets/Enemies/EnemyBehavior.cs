@@ -115,7 +115,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.tag == "Destructible" && (state == "attacking" || state == "idle"))
         {
-            Debug.Log("Exit");
             
         }
     }

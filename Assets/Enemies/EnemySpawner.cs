@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyTypes;
 
     private int tick = 130;
-    private float spawnHeight = 4.0f;
+    private float spawnHeight = 0.0f;
 
     // Start is called before the first frame update
     void Start()

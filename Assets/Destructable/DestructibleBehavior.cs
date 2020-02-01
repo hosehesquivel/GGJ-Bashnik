@@ -50,7 +50,6 @@ public class DestructibleBehavior : MonoBehaviour
 
             if (hp <= 0)
             {
-                Debug.Log("Death");
                 HandleDeath();
             }
         }
