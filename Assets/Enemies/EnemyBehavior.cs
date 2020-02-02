@@ -23,6 +23,8 @@ public class EnemyBehavior : MonoBehaviour
     private float animTick = 0;
     private bool swingingDown = false;
 
+    public GameObject goldParticle;
+
     public void SetTarget(GameObject target, bool isTower)
     {
         this.target = target;
@@ -177,6 +179,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             hasGold = true;
             GameManager.ChangeGold(-100);
+            ShowParticle(goldParticle);
         }
     }
 
@@ -186,5 +189,18 @@ public class EnemyBehavior : MonoBehaviour
         {
             
         }
+    }
+
+    private GameObject ShowParticle(GameObject prefab)
+    {
+        Bounds bnds = new Bounds(transform.position, Vector3.zero);
+
+        GameObject particle = GameObject.Instantiate(prefab, transform.position, Quaternion.identity);
+
+        particle.transform.parent = transform; 
+
+        particle.transform.position = new Vector3(particle.transform.position.x, bnds.size.y + 10, particle.transform.position.z);
+
+        return particle;
     }
 }

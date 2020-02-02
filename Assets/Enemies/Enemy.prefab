@@ -14504,6 +14504,8 @@ MonoBehaviour:
   bounceForce: 0
   sword: {fileID: 5832418686260750302}
   sword2: {fileID: 3259212518249460076}
+  goldParticle: {fileID: 5221384872082400683, guid: 26bea09e75df9ae4093c047927f460bd,
+    type: 3}
 --- !u!54 &-5784453524229056420
 Rigidbody:
   m_ObjectHideFlags: 0

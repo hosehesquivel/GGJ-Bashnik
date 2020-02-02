@@ -58,7 +58,7 @@ public class DestructibleBehavior : MonoBehaviour
             HandleDamage();
         }
 
-        if (hp < maxHp)
+        if (hp < maxHp && hp > 0)
         {
             myFireParticle.SetActive(true);
         } else
@@ -219,6 +219,7 @@ public class DestructibleBehavior : MonoBehaviour
         gameObject.layer = 11;
 
         HideParticle(myRepairParticle);
+        ShowParticle(repairedParticle);
     }
 
     private void HandleDeath()
