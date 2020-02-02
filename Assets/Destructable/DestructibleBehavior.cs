@@ -41,7 +41,7 @@ public class DestructibleBehavior : MonoBehaviour
         hp = maxHp;
         originalMaterial = gameObject.GetComponent<MeshRenderer>().material;
 
-        myFireParticle = ShowParticle(fireParticle);
+        myFireParticle = ShowParticle(fireParticle, 5f);
 
         myFireParticle.SetActive(false);
     }
@@ -56,6 +56,14 @@ public class DestructibleBehavior : MonoBehaviour
         else if (isBeingAttacked)
         {
             HandleDamage();
+        }
+
+        if (hp < maxHp && hp > 0)
+        {
+            myFireParticle.SetActive(true);
+        } else
+        {
+            myFireParticle.SetActive(false);
         }
     }
 
@@ -103,13 +111,13 @@ public class DestructibleBehavior : MonoBehaviour
     }
     
 
-    private GameObject ShowParticle(GameObject prefab)
+    private GameObject ShowParticle(GameObject prefab, float offset = 12)
     {
         Bounds bnds = new Bounds(transform.position, Vector3.zero);
 
         GameObject particle = GameObject.Instantiate(prefab, transform.position, Quaternion.identity);
 
-        particle.transform.position = new Vector3(particle.transform.position.x, bnds.size.y + 12, particle.transform.position.z);
+        particle.transform.position = new Vector3(particle.transform.position.x, bnds.size.y + offset, particle.transform.position.z);
 
         return particle;
     }
@@ -167,8 +175,7 @@ public class DestructibleBehavior : MonoBehaviour
                 HandleDeath();
             }
         }
-
-        myFireParticle.SetActive(true);
+        
     }
 
     private void HandleRepair()
@@ -215,11 +222,9 @@ public class DestructibleBehavior : MonoBehaviour
         }
 
         gameObject.layer = 11;
-
-        Debug.Log("Hide repaired particle");
+        
         HideParticle(myRepairParticle);
         ShowParticle(repairedParticle);
-        myFireParticle.SetActive(false);
     }
 
     private void HandleDeath()
@@ -238,6 +243,5 @@ public class DestructibleBehavior : MonoBehaviour
         gameObject.layer = 14;
 
         myExplosionParticle = ShowParticle(explosionParticle);
-        myFireParticle.SetActive(false);
     }
 }
