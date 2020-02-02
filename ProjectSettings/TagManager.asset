@@ -7,6 +7,7 @@ TagManager:
   - Destructible
   - MainTower
   - Enemy
+  - Ignore
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Wall
   - Tower
   - Player
-  - 
+  - Destroyed
   - 
   - 
   - 

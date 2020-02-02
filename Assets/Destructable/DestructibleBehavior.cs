@@ -10,6 +10,8 @@ public class DestructibleBehavior : MonoBehaviour
     public float repairInterval = 1;
     public float repairPerTick = 2;
 
+    public GameObject destroyedObject;
+
     private float hp { get; set; } = 10;
     private string state = "idle";
     private bool isBeingAttacked = false;
@@ -125,7 +127,9 @@ public class DestructibleBehavior : MonoBehaviour
 
     private void HandleRepaired()
     {
-        Debug.Log("Repaired!!");
+        isBeingAttacked = false;
+        destroyedObject.SetActive(false);
+
         if (beingAttackedBy)
         {
             EnemyBehavior eb = beingAttackedBy.GetComponent<EnemyBehavior>();
@@ -134,17 +138,20 @@ public class DestructibleBehavior : MonoBehaviour
             isBeingRepaired = false;
         }
 
-        MeshCollider mc = GetComponent<MeshCollider>();
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        mr.enabled = true;
 
-        mc.enabled = true;
+        gameObject.layer = 11;
     }
 
     private void HandleDeath()
     {
         isBeingAttacked = false;
-        
-        MeshCollider mc = GetComponent<MeshCollider>();
+        destroyedObject.SetActive(true);
 
-        //mc.enabled = false;
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        mr.enabled = false;
+
+        gameObject.layer = 14;
     }
 }

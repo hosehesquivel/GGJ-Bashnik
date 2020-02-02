@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     bool repairing = false;
 
     private GameObject repairTarget = null;
+    private Quaternion lastRotation;
 
     public float speed = 10;
 
@@ -42,6 +43,14 @@ public class PlayerController : MonoBehaviour
         {
             transform.LookAt(nextPosition);
             transform.Translate(v3, Space.World);
+            lastRotation = transform.rotation;
+        } else
+        {
+            if (lastRotation != null)
+            {
+                transform.rotation = lastRotation;
+            }
+            
         }
     }
 

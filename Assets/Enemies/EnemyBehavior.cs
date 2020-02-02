@@ -7,7 +7,7 @@ public class EnemyBehavior : MonoBehaviour
     public GameObject target;
     public float speed = 45f;
     public float damage = 5.0f;
-    public float distanceFromWall = 4.5f;
+    public float distanceFromWall = 5.6f;
 
     private string state = "moving";
     private GameObject lootTarget;
@@ -64,9 +64,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 if (db.getHp() > 0)
                 {
-
                     float distance = Vector3.Distance(transform.position, target.transform.position);
-
                     if (distance > distanceFromWall)
                     {
                         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
