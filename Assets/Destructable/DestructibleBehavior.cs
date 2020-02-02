@@ -11,6 +11,7 @@ public class DestructibleBehavior : MonoBehaviour
     public float repairPerTick = 2;
 
     public GameObject destroyedObject;
+    public GameObject healthyView;
 
     private float hp { get; set; } = 10;
     private string state = "idle";
@@ -142,6 +143,11 @@ public class DestructibleBehavior : MonoBehaviour
         mr.enabled = true;
 
         gameObject.layer = 11;
+
+        if (healthyView)
+        {
+            healthyView.SetActive(true);
+        }
     }
 
     private void HandleDeath()
@@ -153,5 +159,10 @@ public class DestructibleBehavior : MonoBehaviour
         mr.enabled = false;
 
         gameObject.layer = 14;
+
+        if (healthyView)
+        {
+            healthyView.SetActive(false);
+        }
     }
 }
