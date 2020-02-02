@@ -13,6 +13,7 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject lootTarget;
 
     private bool hasGold = false;
+    private bool isDisappointed = false;
     private Vector3 origin;
 
     public void SetTarget(GameObject target, bool isTower)
@@ -47,15 +48,21 @@ public class EnemyBehavior : MonoBehaviour
 
     public void HandleMove()
     {
+        float step = speed * Time.deltaTime;
+
+        if (isDisappointed)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, origin, step * .5f);
+            return;
+        }
+
         if (this.target)
         {
             DestructibleBehavior db = target.GetComponent<DestructibleBehavior>();
-            float step = speed * Time.deltaTime;
-
             
             if (db)
             {
-                if (db.hp > 0)
+                if (db.getHp() > 0)
                 {
 
                     float distance = Vector3.Distance(transform.position, target.transform.position);
@@ -83,13 +90,18 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    public void SetDisappointed(bool isDisappointed)
+    {
+        this.isDisappointed = isDisappointed;
+    }
+
     private void HandleAttack()
     {
         DestructibleBehavior db = target.GetComponent<DestructibleBehavior>();
 
         if (db)
         {
-            db.HandleAttack(damage);
+            db.HandleAttack(damage, gameObject);
 
             state = "idle";
         }

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 v3 = new Vector3(xInput * speed * Time.deltaTime, 0, yInput * speed * Time.deltaTime);
-        Vector3 nextPosition = transform.position + v3;
+        Vector3 nextPosition = transform.position + v3 * -1;
 
         if (v3.x != 0 || v3.z != 0)
         {
@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         if (repairing && repairTarget)
         {
-            Debug.Log("REPAIRING...");
+            DestructibleBehavior db = repairTarget.GetComponent<DestructibleBehavior>();
+            Debug.Log("Player is setting block repairing");
+            db.setRepairing(true);
         }
     }
 
@@ -61,8 +63,8 @@ public class PlayerController : MonoBehaviour
         xInput = x;
         yInput = y;
 
-        
-        if (Input.GetKeyDown("space"))
+
+        if (Input.GetKeyDown("space") && !repairing)
         {
             repairing = true;
         }
@@ -70,6 +72,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp("space"))
         {
             repairing = false;
+
+            if (repairTarget)
+            {
+                DestructibleBehavior db = repairTarget.GetComponent<DestructibleBehavior>();
+                db.setRepairing(false);
+            }
         }
     }
 
@@ -77,14 +85,41 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Destructible")
         {
+            removeCurrentRepairTarget();
+
             repairTarget = other.gameObject;
+
+            DestructibleBehavior db = repairTarget.GetComponent<DestructibleBehavior>();
+
+            if (db)
+            {
+                db.setRepairTarget(true);
+            }
+            
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
+        repairing = false;
+
         if (other.gameObject == repairTarget)
         {
+            removeCurrentRepairTarget();
+        }
+    }
+
+    private void removeCurrentRepairTarget()
+    {
+        if (repairTarget)
+        {
+            DestructibleBehavior db = repairTarget.GetComponent<DestructibleBehavior>();
+            if (db)
+            {
+                db.setRepairTarget(false);
+                db.setRepairing(false);
+            }
+
             repairTarget = null;
         }
     }
