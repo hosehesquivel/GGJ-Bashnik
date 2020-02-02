@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static int gold = 500;
     public static int startingGold = 500;
-    public static float timeToWin = 10; 
+    public static float timeToWin = 60; 
 
     public static double timer = 0;
 
