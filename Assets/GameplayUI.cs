@@ -16,7 +16,15 @@ public class GameplayUI : MonoBehaviour
     {
         if (GameManager.gold <= 0)
         {
+
             gameOverScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        if (GameManager.timer >= GameManager.timeToWin)
+        {
+            winScreen.SetActive(true);
+            Time.timeScale = 0;
         }
     }
     public static void setScreen(string screen)

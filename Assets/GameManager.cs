@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static int gold = 10000;
-    public static int startingGold = 10000;
+    public static int gold = 500;
+    public static int startingGold = 500;
+    public static float timeToWin = 10; 
+
+    public static double timer = 0;
 
     public static GameObject UI;
 
@@ -18,17 +21,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         
     }
 
     public static void ChangeGold(int difference)
     {
         gold += difference;
-
-        if (gold <= 0)
-        {
-            HandleGameOver();
-        }
     }
 
     private static void HandleGameOver()

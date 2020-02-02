@@ -7,13 +7,18 @@ public class GoldUI : MonoBehaviour
     public GameObject goldBarRight;
     public GameObject goldBarLeft;
     public GameObject goldCount;
+    public GameObject countdown;
 
     private TMPro.TextMeshProUGUI text;
+    private TMPro.TextMeshProUGUI countdownText;
+    private double timer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        text = goldCount.GetComponent<TMPro.TextMeshProUGUI>(); ;
+        text = goldCount.GetComponent<TMPro.TextMeshProUGUI>();
+
+        countdownText = countdown.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -32,5 +37,9 @@ public class GoldUI : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        timer += Time.deltaTime;
+
+        countdownText.text = Mathf.Max(0,(60f - Mathf.Round((float)GameManager.timer))).ToString();
     }
 }
