@@ -14,7 +14,13 @@ public class DestructibleBehavior : MonoBehaviour
 
     public GameObject destroyedObject;
     public GameObject healthyView;
+    public GameObject gate;
     public GameObject tooltip;
+
+    public GameObject repairParticle;
+    public GameObject repairedParticle;
+    public GameObject explosionParticle;
+    public GameObject fireParticle;
 
     private float hp { get; set; } = 10;
     private bool isBeingAttacked = false;
@@ -24,12 +30,20 @@ public class DestructibleBehavior : MonoBehaviour
     private GameObject beingAttackedBy = null;
     private Material originalMaterial;
     private GameObject myTooltip;
+    private GameObject myRepairParticle;
+    private GameObject myExplosionParticle;
+    private GameObject myFireParticle;
+    private GameObject myRepairedParticle;
 
     // Start is called before the first frame update
     void Start()
     {
         hp = maxHp;
         originalMaterial = gameObject.GetComponent<MeshRenderer>().material;
+
+        myFireParticle = ShowParticle(fireParticle);
+
+        //myFireParticle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,6 +56,14 @@ public class DestructibleBehavior : MonoBehaviour
         else if (isBeingAttacked)
         {
             HandleDamage();
+        }
+
+        if (hp < maxHp)
+        {
+            myFireParticle.SetActive(true);
+        } else
+        {
+            myFireParticle.SetActive(false);
         }
     }
 
@@ -69,6 +91,8 @@ public class DestructibleBehavior : MonoBehaviour
                 myTooltip.GetComponent<Tooltip>().setState("repairing");
                 myTooltip.GetComponent<Tooltip>().setScale(hp/maxHp);
             }
+
+            myRepairParticle = ShowParticle(repairParticle);
         }
 
         this.isBeingRepaired = shouldRepair;
@@ -79,6 +103,26 @@ public class DestructibleBehavior : MonoBehaviour
             {
                 myTooltip.GetComponent<Tooltip>().setState("repairable");
             }
+        }
+    }
+    
+
+    private GameObject ShowParticle(GameObject prefab)
+    {
+        Bounds bnds = new Bounds(transform.position, Vector3.zero);
+
+        GameObject particle = GameObject.Instantiate(prefab, transform.position, Quaternion.identity);
+
+        particle.transform.position = new Vector3(particle.transform.position.x, bnds.size.y + 10, particle.transform.position.z);
+
+        return particle;
+    }
+
+    private void HideParticle(GameObject go)
+    {
+        if (go)
+        {
+            GameObject.Destroy(go);
         }
     }
 
@@ -122,8 +166,6 @@ public class DestructibleBehavior : MonoBehaviour
             tick -= damageInterval;
             hp -= damagePerTick;
 
-            Debug.Log("Damaging - HP: " + hp);
-
             if (hp <= 0)
             {
                 HandleDeath();
@@ -141,8 +183,6 @@ public class DestructibleBehavior : MonoBehaviour
             hp += repairPerTick;
             hp = Mathf.Min(maxHp, hp);
 
-            Debug.Log("Repairing - HP: " + hp);
-
             if (hp == maxHp)
             {
                 HandleRepaired();
@@ -157,7 +197,6 @@ public class DestructibleBehavior : MonoBehaviour
 
     private void HandleRepaired()
     {
-        Debug.Log("Repaired");
         isBeingAttacked = false;
         destroyedObject.SetActive(false);
 
@@ -172,18 +211,31 @@ public class DestructibleBehavior : MonoBehaviour
         MeshRenderer mr = GetComponent<MeshRenderer>();
         mr.enabled = true;
 
+        if (gate)
+        {
+            gate.SetActive(true);
+        }
+
         gameObject.layer = 11;
+
+        HideParticle(myRepairParticle);
     }
 
     private void HandleDeath()
     {
-        Debug.Log("Death");
         isBeingAttacked = false;
         destroyedObject.SetActive(true);
 
         MeshRenderer mr = GetComponent<MeshRenderer>();
         mr.enabled = false;
 
+        if (gate)
+        {
+            gate.SetActive(false);
+        }
+
         gameObject.layer = 14;
+
+        myExplosionParticle = ShowParticle(explosionParticle);
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static int gold = 100;
-    public static int startingGold = 100;
+    public static int gold = 10000;
+    public static int startingGold = 10000;
 
     public static GameObject UI;
 

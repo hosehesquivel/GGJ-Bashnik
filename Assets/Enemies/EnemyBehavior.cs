@@ -119,7 +119,6 @@ public class EnemyBehavior : MonoBehaviour
                         {
                             HandleAttack();
                         }
-
                     }
                 }
                 else
@@ -129,6 +128,13 @@ public class EnemyBehavior : MonoBehaviour
                         transform.position = Vector3.MoveTowards(transform.position, origin, step * 2);
                         transform.LookAt(origin);
                         state = "looted";
+
+                        float distance = Vector3.Distance(transform.position, origin);
+
+                        if (distance < 10)
+                        {
+                            GameObject.Destroy(gameObject);
+                        }
                     } else
                     {
                         transform.position = Vector3.MoveTowards(transform.position, lootTarget.transform.position, step);
