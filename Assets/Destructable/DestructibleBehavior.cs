@@ -22,7 +22,7 @@ public class DestructibleBehavior : MonoBehaviour
     public GameObject explosionParticle;
     public GameObject fireParticle;
 
-    private float hp { get; set; } = 10;
+    public float hp = 10;
     private bool isBeingAttacked = false;
     private bool isBeingRepaired = false;
     private float tick = 0;
@@ -43,7 +43,7 @@ public class DestructibleBehavior : MonoBehaviour
 
         myFireParticle = ShowParticle(fireParticle);
 
-        //myFireParticle.SetActive(false);
+        myFireParticle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,14 +56,6 @@ public class DestructibleBehavior : MonoBehaviour
         else if (isBeingAttacked)
         {
             HandleDamage();
-        }
-
-        if (hp < maxHp && hp > 0)
-        {
-            myFireParticle.SetActive(true);
-        } else
-        {
-            myFireParticle.SetActive(false);
         }
     }
 
@@ -92,7 +84,11 @@ public class DestructibleBehavior : MonoBehaviour
                 myTooltip.GetComponent<Tooltip>().setScale(hp/maxHp);
             }
 
-            myRepairParticle = ShowParticle(repairParticle);
+            if (!myRepairParticle && hp < maxHp)
+            {
+                myRepairParticle = ShowParticle(repairParticle);
+            }
+            
         }
 
         this.isBeingRepaired = shouldRepair;
@@ -113,7 +109,7 @@ public class DestructibleBehavior : MonoBehaviour
 
         GameObject particle = GameObject.Instantiate(prefab, transform.position, Quaternion.identity);
 
-        particle.transform.position = new Vector3(particle.transform.position.x, bnds.size.y + 10, particle.transform.position.z);
+        particle.transform.position = new Vector3(particle.transform.position.x, bnds.size.y + 12, particle.transform.position.z);
 
         return particle;
     }
@@ -171,6 +167,8 @@ public class DestructibleBehavior : MonoBehaviour
                 HandleDeath();
             }
         }
+
+        myFireParticle.SetActive(true);
     }
 
     private void HandleRepair()
@@ -183,7 +181,7 @@ public class DestructibleBehavior : MonoBehaviour
             hp += repairPerTick;
             hp = Mathf.Min(maxHp, hp);
 
-            if (hp == maxHp)
+            if (hp >= maxHp)
             {
                 HandleRepaired();
             }
@@ -218,8 +216,10 @@ public class DestructibleBehavior : MonoBehaviour
 
         gameObject.layer = 11;
 
+        Debug.Log("Hide repaired particle");
         HideParticle(myRepairParticle);
         ShowParticle(repairedParticle);
+        myFireParticle.SetActive(false);
     }
 
     private void HandleDeath()
@@ -238,5 +238,6 @@ public class DestructibleBehavior : MonoBehaviour
         gameObject.layer = 14;
 
         myExplosionParticle = ShowParticle(explosionParticle);
+        myFireParticle.SetActive(false);
     }
 }

@@ -213,7 +213,7 @@ MonoBehaviour:
   healthyView: {fileID: 43147556}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -221,6 +221,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &43147559
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1238,7 +1239,7 @@ MonoBehaviour:
   healthyView: {fileID: 110148948}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -1246,6 +1247,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &110148951
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3545,6 +3547,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &197788144
 GameObject:
   m_ObjectHideFlags: 0
@@ -5214,6 +5217,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!43 &305332685
 Mesh:
   m_ObjectHideFlags: 0
@@ -6208,7 +6212,7 @@ MonoBehaviour:
   healthyView: {fileID: 394497611}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -6216,6 +6220,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &394497614
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8318,7 +8323,7 @@ MonoBehaviour:
   healthyView: {fileID: 459819158}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -8326,6 +8331,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &459819161
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13260,6 +13266,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &526198890
 GameObject:
   m_ObjectHideFlags: 0
@@ -13325,6 +13332,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &526198893
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18412,6 +18420,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -19879,6 +19888,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!23 &855118707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22474,7 +22484,7 @@ MonoBehaviour:
   healthyView: {fileID: 878535432}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -22482,6 +22492,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &878535435
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22837,7 +22848,7 @@ MonoBehaviour:
   healthyView: {fileID: 904962378}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -22845,6 +22856,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &904962381
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26561,6 +26573,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!43 &970195707
 Mesh:
   m_ObjectHideFlags: 0
@@ -27082,6 +27095,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &986304071
 GameObject:
   m_ObjectHideFlags: 0
@@ -29426,7 +29440,7 @@ MonoBehaviour:
   healthyView: {fileID: 1061527462}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -29434,6 +29448,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &1061527465
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30272,7 +30287,7 @@ MonoBehaviour:
   healthyView: {fileID: 1104999486}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -30280,6 +30295,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &1104999489
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31336,6 +31352,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &1134372011
 GameObject:
   m_ObjectHideFlags: 0
@@ -36328,6 +36345,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &1251903794
 GameObject:
   m_ObjectHideFlags: 0
@@ -38735,7 +38753,7 @@ MonoBehaviour:
   healthyView: {fileID: 1543282093}
   gate: {fileID: 0}
   tooltip: {fileID: 7322223098284581532, guid: f56968e7b3086f041872bcb202504e66, type: 3}
-  repairParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
+  repairParticle: {fileID: 6434483704455808282, guid: c577fcc00be1a7b40ba87a5f3b07931b,
     type: 3}
   repairedParticle: {fileID: 5955862419197484473, guid: 9ce9d9f7b945e914f9c3e979c70b32ee,
     type: 3}
@@ -38743,6 +38761,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!64 &1543282096
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40220,6 +40239,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &1642458510
 GameObject:
   m_ObjectHideFlags: 0
@@ -41122,6 +41142,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1001 &1659534496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43081,6 +43102,7 @@ MonoBehaviour:
     type: 3}
   fireParticle: {fileID: 857148772963587736, guid: cd526277538117e489657c7d706c7eea,
     type: 3}
+  hp: 10
 --- !u!23 &1830751878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44050,6 +44072,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &1884241829
 GameObject:
   m_ObjectHideFlags: 0
@@ -44408,6 +44431,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!43 &1894479202
 Mesh:
   m_ObjectHideFlags: 0
@@ -49451,6 +49475,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &2044988640
 GameObject:
   m_ObjectHideFlags: 0
@@ -51987,6 +52012,7 @@ MonoBehaviour:
   repairedParticle: {fileID: 0}
   explosionParticle: {fileID: 0}
   fireParticle: {fileID: 0}
+  hp: 10
 --- !u!1 &2130557704
 GameObject:
   m_ObjectHideFlags: 0
