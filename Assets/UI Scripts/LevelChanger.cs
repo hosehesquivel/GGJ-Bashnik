@@ -8,13 +8,15 @@ public class LevelChanger : MonoBehaviour
 	public Animator animator;
  
 	public float transitionTime = 1f;
+	
+	public GameObject Crossfade;
  
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // need to press play button.
-		{
-			LoadNextLevel();
-		}
+        //if (Input.GetMouseButtonDown(0)) // need to press play button.
+		//{
+		//	LoadNextLevel();
+		//}
     }
 	
 	public void LoadNextLevel()
