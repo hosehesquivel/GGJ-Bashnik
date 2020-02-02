@@ -8,6 +8,7 @@ TagManager:
   - MainTower
   - Enemy
   - Ignore
+  - GameplayUI
   layers:
   - Default
   - TransparentFX

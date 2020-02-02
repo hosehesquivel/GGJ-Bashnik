@@ -10,23 +10,27 @@ public class DestructibleBehavior : MonoBehaviour
     public float repairInterval = 1;
     public float repairPerTick = 2;
 
+    public Vector3 offset;
+
     public GameObject destroyedObject;
     public GameObject healthyView;
+    public GameObject tooltip;
 
     private float hp { get; set; } = 10;
-    private string state = "idle";
     private bool isBeingAttacked = false;
+    private bool isBeingRepaired = false;
     private float tick = 0;
     private float damagePerTick = 0;
-    private bool isBeingRepaired = false;
     private GameObject beingAttackedBy = null;
     private Material originalMaterial;
+    private GameObject myTooltip;
 
     // Start is called before the first frame update
     void Start()
     {
         hp = maxHp;
-        originalMaterial = gameObject.GetComponent<MeshRenderer>().material;    }
+        originalMaterial = gameObject.GetComponent<MeshRenderer>().material;
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,11 +43,6 @@ public class DestructibleBehavior : MonoBehaviour
         {
             HandleDamage();
         }
-
-        if (hp < 0)
-        {
-            HandleDeath();
-        }
     }
 
     public void HandleAttack(float damage, GameObject source)
@@ -54,19 +53,33 @@ public class DestructibleBehavior : MonoBehaviour
         beingAttackedBy = source;
     }
 
-    public void setRepairing(bool isBeingRepaired)
+    public void setRepairing(bool shouldRepair)
     {
-        if (!this.isBeingRepaired && isBeingRepaired)
+        if (!this.isBeingRepaired && shouldRepair)
         {
             tick = 0;
 
-            MeshRenderer mr = gameObject.GetComponent<MeshRenderer>();
+            MeshRenderer mr = healthyView.GetComponent<MeshRenderer>();
 
             Material redMaterial = Resources.Load<Material>("Materials/Green");
             mr.material = redMaterial;
+
+            if (myTooltip)
+            {
+                myTooltip.GetComponent<Tooltip>().setState("repairing");
+                myTooltip.GetComponent<Tooltip>().setScale(hp/maxHp);
+            }
         }
 
-        this.isBeingRepaired = isBeingRepaired;
+        this.isBeingRepaired = shouldRepair;
+
+        if (!shouldRepair)
+        {
+            if (myTooltip)
+            {
+                myTooltip.GetComponent<Tooltip>().setState("repairable");
+            }
+        }
     }
 
     public float getHp()
@@ -76,16 +89,27 @@ public class DestructibleBehavior : MonoBehaviour
 
     public void setRepairTarget(bool isTarget)
     {
-        MeshRenderer mr = gameObject.GetComponent<MeshRenderer>();
+        MeshRenderer mr = healthyView.GetComponent<MeshRenderer>();
         
         if (isTarget)
         {
             Material redMaterial = Resources.Load<Material>("Materials/Red");
             mr.material = redMaterial;
 
+            Bounds bnds = new Bounds(transform.position, Vector3.zero);
+
+            myTooltip = GameObject.Instantiate(tooltip, transform.position, Quaternion.identity);
+
+            myTooltip.transform.position = new Vector3(myTooltip.transform.position.x, bnds.size.y + 10, myTooltip.transform.position.z);
+
         } else
         {
             mr.material = originalMaterial;
+
+            if (myTooltip)
+            {
+                GameObject.Destroy(myTooltip);
+            }
         }
         
     }
@@ -123,11 +147,17 @@ public class DestructibleBehavior : MonoBehaviour
             {
                 HandleRepaired();
             }
+
+            if (myTooltip)
+            {
+                myTooltip.GetComponent<Tooltip>().setScale((float)hp/maxHp);
+            }
         }
     }
 
     private void HandleRepaired()
     {
+        Debug.Log("Repaired");
         isBeingAttacked = false;
         destroyedObject.SetActive(false);
 
@@ -143,15 +173,11 @@ public class DestructibleBehavior : MonoBehaviour
         mr.enabled = true;
 
         gameObject.layer = 11;
-
-        if (healthyView)
-        {
-            healthyView.SetActive(true);
-        }
     }
 
     private void HandleDeath()
     {
+        Debug.Log("Death");
         isBeingAttacked = false;
         destroyedObject.SetActive(true);
 
@@ -159,10 +185,5 @@ public class DestructibleBehavior : MonoBehaviour
         mr.enabled = false;
 
         gameObject.layer = 14;
-
-        if (healthyView)
-        {
-            healthyView.SetActive(false);
-        }
     }
 }

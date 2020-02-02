@@ -37,21 +37,38 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 v3 = new Vector3(xInput * speed * Time.deltaTime, 0, yInput * speed * Time.deltaTime);
-        Vector3 nextPosition = transform.position + v3 * -1;
+        Vector3 nextPosition = transform.position + v3;
 
-        if (v3.x != 0 || v3.z != 0)
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+
             transform.LookAt(nextPosition);
-            transform.Translate(v3, Space.World);
+            if (hit.distance > v3.magnitude + 1)
+            {
+                if (v3.x != 0 || v3.z != 0)
+                {
+                    
+                    //transform.Translate(v3, Space.World);
+                    transform.position = nextPosition;
+                    
+                }
+            }
+
+            
             lastRotation = transform.rotation;
-        } else
+        }
+        else
         {
             if (lastRotation != null)
             {
                 transform.rotation = lastRotation;
             }
-            
         }
+
+        
     }
 
     void Repair()
@@ -59,7 +76,6 @@ public class PlayerController : MonoBehaviour
         if (repairing && repairTarget)
         {
             DestructibleBehavior db = repairTarget.GetComponent<DestructibleBehavior>();
-            Debug.Log("Player is setting block repairing");
             db.setRepairing(true);
         }
     }
